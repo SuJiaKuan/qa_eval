@@ -1,5 +1,7 @@
 import argparse
 
+from qa_eval.data import parse as parse_data
+
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -28,7 +30,8 @@ def parse_args():
 
 
 def main(questions_path, answers_path, predictions_path):
-    pass
+    pqap_groups = parse_data(questions_path, answers_path, predictions_path)
+    # TODO
 
 
 if __name__ == "__main__":
