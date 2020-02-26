@@ -2,6 +2,26 @@ import pandas as pd
 from tabulate import tabulate
 
 
+DETAILS_COMPACT_HEAD_KEY_LIST = [
+    ("PID", "pid"),
+    ("QID", "qid"),
+    ("Question Type", "answer_type"),
+    ("Correct?", "is_correct"),
+    ("Non-Correct Reason", "error_reason"),
+]
+
+DETAILS_FULL_HEAD_KEY_LIST = [
+    ("PID", "pid"),
+    ("QID", "qid"),
+    ("Passage", "passage_text"),
+    ("Question", "question_text"),
+    ("Question Type", "answer_type"),
+    ("Answer", "answer_text"),
+    ("Prediction", "prediction_text"),
+    ("Correct?", "is_correct"),
+    ("Non-Correct Reason", "error_reason"),
+]
+
 CORRECTNESS_HEAD_KEY_LIST = [
     ("Type", "type"),
     ("Question Count", "question_count"),
@@ -39,6 +59,28 @@ def _df_to_csv(df, save_path):
     if save_path is not None:
         df.to_csv(save_path)
         print("Result saved to {}".format(save_path))
+
+
+def visualize_details(pqap_groups, save_path=None):
+    # Convert Passage-Question-Answer-Prediction (PQAP) groups to a list that
+    # each item contains detail about a PQAP. The converted list can be fitted
+    # to a DataFrame for further use.
+    details_list = []
+    for pqap_group in pqap_groups:
+        pid = pqap_group["pid"]
+        passage_text = pqap_group["passage_text"]
+        for index, qap in enumerate(pqap_group["qap_list"]):
+            details_list.append({
+                "pid": pid,
+                "passage_text": passage_text if index == 0 else None,
+                **qap,
+            })
+
+    details_compact_df = _list_to_df(details_list, DETAILS_COMPACT_HEAD_KEY_LIST)
+    _df_to_stdout(details_compact_df, "Details (Compact Version)")
+
+    details_full_df = _list_to_df(details_list, DETAILS_FULL_HEAD_KEY_LIST)
+    _df_to_csv(details_full_df, save_path)
 
 
 def visualize_correctness(correctness_list, save_path=None):

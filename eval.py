@@ -4,6 +4,7 @@ import os
 from qa_eval.data import parse as parse_data
 from qa_eval.analytics import analyze_correctness
 from qa_eval.analytics import analyze_error_reasons
+from qa_eval.visualize import visualize_details
 from qa_eval.visualize import visualize_correctness
 from qa_eval.visualize import visualize_error_reasons
 from qa_eval.config import DEFAULT_OUTPUT_DIR
@@ -56,6 +57,12 @@ def main(args):
         args.predictions_path,
     )
 
+    # Visualize and save the details.
+    visualize_details(
+        pqap_groups,
+        save_path=os.path.join(args.output, OUTPUT_FILE_NAME.DETAILS),
+    )
+
     # Analyze the correctness and then visualize and save the results.
     correctness_list = analyze_correctness(pqap_groups)
     visualize_correctness(
@@ -69,8 +76,6 @@ def main(args):
         error_reasons,
         save_path=os.path.join(args.output, OUTPUT_FILE_NAME.ERROR_REASONS),
     )
-
-    # TODO
 
 
 if __name__ == "__main__":
