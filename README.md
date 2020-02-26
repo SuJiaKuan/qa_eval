@@ -25,13 +25,13 @@ python3 eval.py \
 
 ### Detailed Usages
 
-Run following command to see detail usage:
+Run following command to see detail usages:
 
 ```bash
 python3 eval.py -h
 ```
 
-The usage is shown as follows:
+The usages is shown as follows:
 
 ```
 usage: eval.py [-h] [-o OUTPUT] questions_path answers_path predictions_path
