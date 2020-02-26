@@ -2,7 +2,7 @@ import pandas as pd
 from tabulate import tabulate
 
 
-DETAILS_COMPACT_HEAD_KEY_LIST = [
+_DETAILS_COMPACT_HEAD_KEY_LIST = [
     ("PID", "pid"),
     ("QID", "qid"),
     ("Question Type", "answer_type"),
@@ -10,7 +10,7 @@ DETAILS_COMPACT_HEAD_KEY_LIST = [
     ("Non-Correct Reason", "error_reason"),
 ]
 
-DETAILS_FULL_HEAD_KEY_LIST = [
+_DETAILS_FULL_HEAD_KEY_LIST = [
     ("PID", "pid"),
     ("QID", "qid"),
     ("Passage", "passage_text"),
@@ -22,14 +22,14 @@ DETAILS_FULL_HEAD_KEY_LIST = [
     ("Non-Correct Reason", "error_reason"),
 ]
 
-CORRECTNESS_HEAD_KEY_LIST = [
+_CORRECTNESS_HEAD_KEY_LIST = [
     ("Type", "type"),
     ("Question Count", "question_count"),
     ("Correct Count", "correct_count"),
     ("Correct Rate", "correct_rate"),
 ]
 
-ERROR_REASONS_HEAD_KEY_LIST = [
+_ERROR_REASONS_HEAD_KEY_LIST = [
     ("Reason", "reason"),
     ("Count", "count"),
     ("Rate", "rate"),
@@ -76,20 +76,20 @@ def visualize_details(pqap_groups, save_path=None):
                 **qap,
             })
 
-    details_compact_df = _list_to_df(details_list, DETAILS_COMPACT_HEAD_KEY_LIST)
+    details_compact_df = _list_to_df(details_list, _DETAILS_COMPACT_HEAD_KEY_LIST)
     _df_to_stdout(details_compact_df, "Details (Compact Version)")
 
-    details_full_df = _list_to_df(details_list, DETAILS_FULL_HEAD_KEY_LIST)
+    details_full_df = _list_to_df(details_list, _DETAILS_FULL_HEAD_KEY_LIST)
     _df_to_csv(details_full_df, save_path)
 
 
 def visualize_correctness(correctness_list, save_path=None):
-    correctness_df = _list_to_df(correctness_list,CORRECTNESS_HEAD_KEY_LIST)
+    correctness_df = _list_to_df(correctness_list, _CORRECTNESS_HEAD_KEY_LIST)
     _df_to_stdout(correctness_df, "Correctness")
     _df_to_csv(correctness_df, save_path)
 
 
 def visualize_error_reasons(error_reasons, save_path=None):
-    error_reasons_df = _list_to_df(error_reasons, ERROR_REASONS_HEAD_KEY_LIST)
+    error_reasons_df = _list_to_df(error_reasons, _ERROR_REASONS_HEAD_KEY_LIST)
     _df_to_stdout(error_reasons_df, "Error Reasons")
     _df_to_csv(error_reasons_df, save_path)
