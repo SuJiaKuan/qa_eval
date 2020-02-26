@@ -1,3 +1,3 @@
-# Question Answering Evaluation Tool
+# Question Answering Evaluation Tools
 
-本專案提供第二屆科技大擂台比賽，計算簡答題模型正確率、原因解析等工具。
+The project targets on question answering models for 2020 Formosa Grand Challenge. It provides tools for correctness evaluation, analytics and visualization.
