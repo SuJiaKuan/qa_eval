@@ -135,3 +135,60 @@ An example of compact version details report is shown as follows:
 | 49 | D325  | D325Q05 | yesno           | False      | right_type_wrong_prediction |
 +----+-------+---------+-----------------+------------+-----------------------------+
 ```
+
+### Correctness
+
+The result shows correctness count and rate of each question type. You can see the report on stdout and in `output/correctness.csv`.
+
+Meaning of the fields:
+
+- `Type`: Question type, it can be:
+- `Question Count`: Total count of that question type
+    - `passage_span`: The answer should be extracted from passage
+    - `question_span`: The answer should be extracted from question
+    - `multiple_spans`: The answer should be extracted from passage (more than one span)
+    - `yesno`: The answer should be yes or no
+    - `overall`: All question types
+    - `math`: The answer is a math problem (arithmetic or counting)
+- `Correct Count`: Correct count of that question type from your predictions
+- `Correct Rate`: Correct rate of that question type from your predictions
+
+An example is shown as follows:
+
+```
+====================== Correctness Result ======================
++----+----------------+------------------+-----------------+----------------+
+|    | Type           |   Question Count |   Correct Count | Correct Rate   |
+|----+----------------+------------------+-----------------+----------------|
+|  0 | passage_span   |               27 |              12 | 44%            |
+|  1 | question_span  |                0 |               0 | 0%             |
+|  2 | multiple_spans |                5 |               0 | 0%             |
+|  3 | yesno          |               16 |               9 | 56%            |
+|  4 | math           |                2 |               0 | 0%             |
+|  5 | overall        |               50 |              21 | 42%            |
++----+----------------+------------------+-----------------+----------------+
+```
+
+### Error Reasons
+
+The result shows count and rate for each reason for non-correct predictions. You can see the report on stdout and in `output/error_reasons.csv`.
+
+Meaning of the fields:
+
+- `Reason`: The reason that your model predictions are not correct. It can be:
+    - `right_type_wrong_prediction`: Your model predicted a correct question type, but its prediction is wrong
+    - `wrong_type`: Your model predicted a wrong question type
+- `Count`: Count of that reason from your non-correct predictions
+- `Count`: Rate of that reason from your non-correct predictions
+
+An example is shown as follows:
+
+```
+====================== Error Reasons Result ======================
++----+-----------------------------+---------+--------+
+|    | Reason                      |   Count | Rate   |
+|----+-----------------------------+---------+--------|
+|  0 | right_type_wrong_prediction |      24 | 82%    |
+|  1 | wrong_type                  |       5 | 17%    |
++----+-----------------------------+---------+--------+
+```
