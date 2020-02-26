@@ -24,7 +24,7 @@ def parse_args():
     parser.add_argument(
         'answers_path',
         type=str,
-        help='Path to answers JSON file (.json)',
+        help='Path to ground truth answers JSON file (.json)',
     )
     parser.add_argument(
         'predictions_path',
