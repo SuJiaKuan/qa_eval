@@ -78,63 +78,7 @@ Meaning of the fields:
 
 An example of compact version details report is shown as follows:
 
-```
-====================== Details (Compact Version) Result ======================
-+----+-------+---------+-----------------+------------+-----------------------------+
-|    | PID   | QID     | Question Type   | Correct?   | Non-Correct Reason          |
-|----+-------+---------+-----------------+------------+-----------------------------|
-|  0 | D058  | D058Q07 | multiple_spans  | False      | right_type_wrong_prediction |
-|  1 | D058  | D058Q10 | multiple_spans  | False      | wrong_type                  |
-|  2 | D058  | D058Q11 | passage_span    | False      | right_type_wrong_prediction |
-|  3 | D058  | D058Q13 | passage_span    | False      | right_type_wrong_prediction |
-|  4 | D058  | D058Q14 | passage_span    | False      | right_type_wrong_prediction |
-|  5 | D058  | D058Q15 | passage_span    | False      | right_type_wrong_prediction |
-|  6 | D058  | D058Q17 | passage_span    | False      | right_type_wrong_prediction |
-|  7 | D124  | D124Q02 | passage_span    | True       |                             |
-|  8 | D124  | D124Q03 | yesno           | False      | right_type_wrong_prediction |
-|  9 | D124  | D124Q04 | yesno           | False      | right_type_wrong_prediction |
-| 10 | D124  | D124Q05 | passage_span    | False      | right_type_wrong_prediction |
-| 11 | D124  | D124Q06 | passage_span    | False      | right_type_wrong_prediction |
-| 12 | D124  | D124Q07 | math            | False      | wrong_type                  |
-| 13 | D124  | D124Q08 | passage_span    | True       |                             |
-| 14 | D126  | D126Q01 | passage_span    | True       |                             |
-| 15 | D126  | D126Q02 | passage_span    | True       |                             |
-| 16 | D126  | D126Q03 | multiple_spans  | False      | right_type_wrong_prediction |
-| 17 | D126  | D126Q04 | passage_span    | True       |                             |
-| 18 | D126  | D126Q05 | multiple_spans  | False      | wrong_type                  |
-| 19 | D126  | D126Q06 | multiple_spans  | False      | right_type_wrong_prediction |
-| 20 | D126  | D126Q07 | yesno           | True       |                             |
-| 21 | D126  | D126Q09 | passage_span    | False      | right_type_wrong_prediction |
-| 22 | D201  | D201Q01 | yesno           | True       |                             |
-| 23 | D201  | D201Q02 | yesno           | True       |                             |
-| 24 | D201  | D201Q03 | yesno           | True       |                             |
-| 25 | D201  | D201Q04 | yesno           | False      | right_type_wrong_prediction |
-| 26 | D201  | D201Q05 | yesno           | False      | right_type_wrong_prediction |
-| 27 | D204  | D204Q01 | passage_span    | True       |                             |
-| 28 | D204  | D204Q02 | passage_span    | False      | right_type_wrong_prediction |
-| 29 | D204  | D204Q03 | passage_span    | False      | right_type_wrong_prediction |
-| 30 | D204  | D204Q04 | math            | False      | wrong_type                  |
-| 31 | D204  | D204Q06 | passage_span    | True       |                             |
-| 32 | D204  | D204Q07 | passage_span    | False      | right_type_wrong_prediction |
-| 33 | D204  | D204Q08 | yesno           | True       |                             |
-| 34 | D320  | D320Q01 | passage_span    | True       |                             |
-| 35 | D320  | D320Q02 | yesno           | True       |                             |
-| 36 | D320  | D320Q03 | yesno           | True       |                             |
-| 37 | D320  | D320Q05 | yesno           | False      | right_type_wrong_prediction |
-| 38 | D320  | D320Q06 | yesno           | True       |                             |
-| 39 | D320  | D320Q07 | yesno           | True       |                             |
-| 40 | D320  | D320Q08 | yesno           | False      | right_type_wrong_prediction |
-| 41 | D324  | D324Q01 | passage_span    | False      | right_type_wrong_prediction |
-| 42 | D324  | D324Q02 | passage_span    | True       |                             |
-| 43 | D324  | D324Q03 | passage_span    | False      | wrong_type                  |
-| 44 | D324  | D324Q05 | passage_span    | True       |                             |
-| 45 | D324  | D324Q09 | passage_span    | False      | right_type_wrong_prediction |
-| 46 | D325  | D325Q01 | passage_span    | False      | right_type_wrong_prediction |
-| 47 | D325  | D325Q03 | passage_span    | True       |                             |
-| 48 | D325  | D325Q04 | passage_span    | True       |                             |
-| 49 | D325  | D325Q05 | yesno           | False      | right_type_wrong_prediction |
-+----+-------+---------+-----------------+------------+-----------------------------+
-```
+![](images/details.png)
 
 ### Correctness
 
@@ -155,19 +99,7 @@ Meaning of the fields:
 
 An example is shown as follows:
 
-```
-====================== Correctness Result ======================
-+----+----------------+------------------+-----------------+----------------+
-|    | Type           |   Question Count |   Correct Count | Correct Rate   |
-|----+----------------+------------------+-----------------+----------------|
-|  0 | passage_span   |               27 |              12 | 44%            |
-|  1 | question_span  |                0 |               0 | 0%             |
-|  2 | multiple_spans |                5 |               0 | 0%             |
-|  3 | yesno          |               16 |               9 | 56%            |
-|  4 | math           |                2 |               0 | 0%             |
-|  5 | overall        |               50 |              21 | 42%            |
-+----+----------------+------------------+-----------------+----------------+
-```
+![](images/correctness.png)
 
 ### Error Reasons
 
@@ -183,12 +115,4 @@ Meaning of the fields:
 
 An example is shown as follows:
 
-```
-====================== Error Reasons Result ======================
-+----+-----------------------------+---------+--------+
-|    | Reason                      |   Count | Rate   |
-|----+-----------------------------+---------+--------|
-|  0 | right_type_wrong_prediction |      24 | 82%    |
-|  1 | wrong_type                  |       5 | 17%    |
-+----+-----------------------------+---------+--------+
-```
+![](images/error_reasons.png)
