@@ -7,6 +7,12 @@ class PROBLEM_TYPE(object):
     MATH = 'math'
 
 
+# Definition of reasons that are not predicted correctly.
+class ERROR_REASON(object):
+    RIGHT_TYPE_WRONG_PREDICTION = 'right_type_wrong_prediction'
+    WRONG_TYPE = 'wrong_type'
+
+
 # The table that maps from model defined type name to our type name.
 MODEL_TYPE_MAPPING = {
     "passage_span": PROBLEM_TYPE.PASSAGE_SPAN,

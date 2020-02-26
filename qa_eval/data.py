@@ -3,6 +3,7 @@ from qa_eval.util import load_jsonl
 from qa_eval.util import any_sep_contained
 from qa_eval.util import split_multi_seps
 from qa_eval.const import PROBLEM_TYPE
+from qa_eval.const import ERROR_REASON
 from qa_eval.const import MODEL_TYPE_MAPPING
 from qa_eval.const import MULTIPLE_SPANS_SEPARATORS
 from qa_eval.const import YESNO_WORDS
@@ -78,6 +79,13 @@ def _compare_answer(answer_type, answer_comparable, prediction_comparable):
     return False
 
 
+def _decide_error_reason(answer_type, prediction_type):
+    if answer_type == prediction_type:
+        return ERROR_REASON.RIGHT_TYPE_WRONG_PREDICTION
+
+    return ERROR_REASON.WRONG_TYPE
+
+
 def parse(questions_path, answers_path, predictions_path):
     pqap_groups = []
 
@@ -123,6 +131,10 @@ def parse(questions_path, answers_path, predictions_path):
                 answer_comparable,
                 prediction_comparable,
             )
+            # Decide the reason if it is not correct.
+            error_reason = None \
+                           if is_correct \
+                           else _decide_error_reason(answer_type, prediction_type)
 
             qap_list.append({
                 "qid": qid,
@@ -132,6 +144,7 @@ def parse(questions_path, answers_path, predictions_path):
                 "prediction_type": prediction_type,
                 "prediction_text": prediction_text,
                 "is_correct": is_correct,
+                "error_reason": error_reason,
             })
 
         pqap_groups.append({

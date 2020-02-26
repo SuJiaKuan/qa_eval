@@ -1,4 +1,5 @@
 from qa_eval.const import PROBLEM_TYPE
+from qa_eval.const import ERROR_REASON
 
 
 # Put types that we want to analyze for correctness here.
@@ -15,6 +16,17 @@ _CORRECTNESS_TYPES = [
 _CORRECTNESS_TYPE_INDEX = {
     t: _CORRECTNESS_TYPES.index(t)
     for t in _CORRECTNESS_TYPES
+}
+
+# Put reasons that we want to analyze for error here.
+_ERROR_REASONS = [
+    ERROR_REASON.RIGHT_TYPE_WRONG_PREDICTION,
+    ERROR_REASON.WRONG_TYPE,
+ ]
+# Create a inversed index table to make the index search of error reason faster.
+_ERROR_REASON_INDEX = {
+    r: _ERROR_REASONS.index(r)
+    for r in _ERROR_REASONS
 }
 
 
@@ -47,3 +59,30 @@ def analyze_correctness(pqap_groups):
             correctness["correct_rate"] = correct_rate
 
     return correctness_list
+
+
+def analyze_error_reasons(pqap_groups):
+    error_reasons = [
+        {"reason": r, "count": 0,  "rate": "0%"}
+        for r in _ERROR_REASONS
+    ]
+
+    # Walk through each Question-Answer-Prediction for each
+    # Passage-Question-Answer-Prediction group.
+    for pqap_group in pqap_groups:
+        for qap in pqap_group["qap_list"]:
+            error_reason = qap["error_reason"]
+            if error_reason in _ERROR_REASONS:
+                reason_index = _ERROR_REASON_INDEX[error_reason]
+                error_reasons[reason_index]["count"] += 1
+
+    # Calculate rate for each error reason.
+    error_count = sum([r["count"] for r in error_reasons])
+    if error_count > 0:
+        for error_reason in error_reasons:
+            count = error_reason["count"]
+            rate = int(count / error_count * 100)
+            rate = "{}%".format(rate)
+            error_reason["rate"] = rate
+
+    return error_reasons
