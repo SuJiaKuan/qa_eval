@@ -153,3 +153,6 @@ Sessionx.vim
 tags
 # Persistent undo
 [._]*.un~
+
+# Default directory that saves the results
+/output
