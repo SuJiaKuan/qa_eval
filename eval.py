@@ -29,12 +29,14 @@ def parse_args():
     return args
 
 
-def main(questions_path, answers_path, predictions_path):
-    pqap_groups = parse_data(questions_path, answers_path, predictions_path)
+def main(args):
+    pqap_groups = parse_data(
+        args.questions_path,
+        args.answers_path,
+        args.predictions_path,
+    )
     # TODO
 
 
 if __name__ == "__main__":
-    args = parse_args()
-
-    main(args.questions_path, args.answers_path, args.predictions_path)
+    main(parse_args())
