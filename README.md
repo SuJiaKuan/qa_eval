@@ -51,7 +51,7 @@ optional arguments:
 
 ## Outputs
 
-After running the tools, you will get three kinds of result: details, correctness and error reasons.
+After running the tools, you will get three kinds of result: [details](#details), [correctness](#correctness) and [error reasons](error-reasons).
 
 ### Details
 
