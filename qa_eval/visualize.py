@@ -18,6 +18,7 @@ _DETAILS_FULL_HEAD_KEY_LIST = [
     ("Question Type", "answer_type"),
     ("Answer", "answer_text"),
     ("Prediction", "prediction_text"),
+    ("Prediction Type", "prediction_type"),
     ("Correct?", "is_correct"),
     ("Non-Correct Reason", "error_reason"),
 ]
