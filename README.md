@@ -71,7 +71,7 @@ Meaning of the fields:
     - `math`: The answer is a math problem (arithmetic or counting)
 - `Answer`: Ground truth text (only in full version)
 - `Prediction`: Your model prediction text (only in full version)
-- `Prediction Type`: Your model prediction type (only in full version)
+- `Prediction Type`: Your model prediction type
 - `Correct?`: Your model prediction is correct or not
 - `Non-Correct Reason`: If your model prediction is not correct, what is the reason? It can be:
     - `right_type_wrong_prediction`: Your model predicted a correct question type, but its prediction is wrong

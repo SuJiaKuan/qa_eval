@@ -6,6 +6,7 @@ _DETAILS_COMPACT_HEAD_KEY_LIST = [
     ("PID", "pid"),
     ("QID", "qid"),
     ("Question Type", "answer_type"),
+    ("Prediction Type", "prediction_type"),
     ("Correct?", "is_correct"),
     ("Non-Correct Reason", "error_reason"),
 ]
