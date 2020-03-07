@@ -34,7 +34,9 @@ python3 eval.py -h
 The usages is shown as follows:
 
 ```
-usage: eval.py [-h] [-o OUTPUT] questions_path answers_path predictions_path
+usage: eval.py [-h] [-o OUTPUT]
+               [-f {plain,simple,github,grid,fancy_grid,pipe,orgtbl,jira,presto,psql,rst,mediawiki,moinmoin,youtrack,html,latex,latex_raw,latex_booktabs,textile}]
+               questions_path answers_path predictions_path
 
 Evaluation tool of question answering model for 2020 Formosa Grand Challenge
 
@@ -46,7 +48,10 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   -o OUTPUT, --output OUTPUT
-                        Path to directory that saves the results
+                        Path to directory that saves the results (default:
+                        output)
+  -f {plain,simple,github,grid,fancy_grid,pipe,orgtbl,jira,presto,psql,rst,mediawiki,moinmoin,youtrack,html,latex,latex_raw,latex_booktabs,textile}, --format {plain,simple,github,grid,fancy_grid,pipe,orgtbl,jira,presto,psql,rst,mediawiki,moinmoin,youtrack,html,latex,latex_raw,latex_booktabs,textile}
+                        Format to print the result tables (default: github)
 ```
 
 ## Outputs
