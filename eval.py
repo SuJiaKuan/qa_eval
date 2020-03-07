@@ -8,6 +8,8 @@ from qa_eval.visualize import visualize_details
 from qa_eval.visualize import visualize_correctness
 from qa_eval.visualize import visualize_error_reasons
 from qa_eval.config import DEFAULT_OUTPUT_DIR
+from qa_eval.config import DEFAULT_TABLE_FORMAT
+from qa_eval.config import TABLE_FORMAT_CHOICES
 from qa_eval.config import OUTPUT_FILE_NAME
 
 
@@ -15,6 +17,7 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description="Evaluation tool of question answering model for 2020 "
                     "Formosa Grand Challenge",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument(
         'questions_path',
@@ -38,6 +41,14 @@ def parse_args():
         default=DEFAULT_OUTPUT_DIR,
         help='Path to directory that saves the results',
     )
+    parser.add_argument(
+        '-f',
+        '--format',
+        type=str,
+        default=DEFAULT_TABLE_FORMAT,
+        help='Format to print the result tables',
+        choices=TABLE_FORMAT_CHOICES,
+    )
 
     args = parser.parse_args()
 
@@ -60,6 +71,7 @@ def main(args):
     # Visualize and save the details.
     visualize_details(
         pqap_groups,
+        args.format,
         save_path=os.path.join(args.output, OUTPUT_FILE_NAME.DETAILS),
     )
 
@@ -67,6 +79,7 @@ def main(args):
     correctness_list = analyze_correctness(pqap_groups)
     visualize_correctness(
         correctness_list,
+        args.format,
         save_path=os.path.join(args.output, OUTPUT_FILE_NAME.CORRECTNESS),
     )
 
@@ -74,6 +87,7 @@ def main(args):
     error_reasons = analyze_error_reasons(pqap_groups)
     visualize_error_reasons(
         error_reasons,
+        args.format,
         save_path=os.path.join(args.output, OUTPUT_FILE_NAME.ERROR_REASONS),
     )
 

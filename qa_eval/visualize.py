@@ -49,11 +49,11 @@ def _list_to_df(source_list, head_key_list):
     return df
 
 
-def _df_to_stdout(df, theme):
+def _df_to_stdout(df, theme, table_format):
     print(
         "====================== {} Result ======================".format(theme)
     )
-    print(tabulate(df, headers='keys', tablefmt='psql'))
+    print(tabulate(df, headers='keys', tablefmt=table_format))
 
 
 def _df_to_csv(df, save_path):
@@ -63,7 +63,7 @@ def _df_to_csv(df, save_path):
         print("Result saved to {}".format(save_path))
 
 
-def visualize_details(pqap_groups, save_path=None):
+def visualize_details(pqap_groups, table_format, save_path=None):
     # Convert Passage-Question-Answer-Prediction (PQAP) groups to a list that
     # each item contains detail about a PQAP. The converted list can be fitted
     # to a DataFrame for further use.
@@ -79,19 +79,19 @@ def visualize_details(pqap_groups, save_path=None):
             })
 
     details_compact_df = _list_to_df(details_list, _DETAILS_COMPACT_HEAD_KEY_LIST)
-    _df_to_stdout(details_compact_df, "Details (Compact Version)")
+    _df_to_stdout(details_compact_df, "Details (Compact Version)", table_format)
 
     details_full_df = _list_to_df(details_list, _DETAILS_FULL_HEAD_KEY_LIST)
     _df_to_csv(details_full_df, save_path)
 
 
-def visualize_correctness(correctness_list, save_path=None):
+def visualize_correctness(correctness_list, table_format, save_path=None):
     correctness_df = _list_to_df(correctness_list, _CORRECTNESS_HEAD_KEY_LIST)
-    _df_to_stdout(correctness_df, "Correctness")
+    _df_to_stdout(correctness_df, "Correctness", table_format)
     _df_to_csv(correctness_df, save_path)
 
 
-def visualize_error_reasons(error_reasons, save_path=None):
+def visualize_error_reasons(error_reasons, table_format, save_path=None):
     error_reasons_df = _list_to_df(error_reasons, _ERROR_REASONS_HEAD_KEY_LIST)
-    _df_to_stdout(error_reasons_df, "Error Reasons")
+    _df_to_stdout(error_reasons_df, "Error Reasons", table_format)
     _df_to_csv(error_reasons_df, save_path)
