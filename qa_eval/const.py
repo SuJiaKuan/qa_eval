@@ -7,6 +7,13 @@ class PROBLEM_TYPE(object):
     MATH = 'math'
 
 
+# Definition of problem level.
+class PROBLEM_LEVEL(object):
+    BASIC = '基礎題'
+    ADVANCED = '進階題'
+    FREE_RESPONSE = '申論'
+
+
 # Definition of reasons that are not predicted correctly.
 class ERROR_REASON(object):
     RIGHT_TYPE_WRONG_PREDICTION = 'right_type_wrong_prediction'

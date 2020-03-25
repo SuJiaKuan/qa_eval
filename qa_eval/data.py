@@ -3,6 +3,7 @@ from qa_eval.util import load_jsonl
 from qa_eval.util import any_sep_contained
 from qa_eval.util import split_multi_seps
 from qa_eval.const import PROBLEM_TYPE
+from qa_eval.const import PROBLEM_LEVEL
 from qa_eval.const import ERROR_REASON
 from qa_eval.const import MODEL_TYPE_MAPPING
 from qa_eval.const import MULTIPLE_SPANS_SEPARATORS
@@ -107,6 +108,13 @@ def parse(questions_path, answers_path, predictions_path):
         qap_list = []
         # Parse each question and its corresponding answer and prediction.
         for question in questions_group["QUESTIONS"]:
+            # Parse problem level.
+            level = question["QTYPE"]
+
+            # Skip free response.
+            if level == PROBLEM_LEVEL.FREE_RESPONSE:
+                continue
+
             # Parse question
             qid = question["QID"]
             question_text = question["QTEXT"]
