@@ -56,7 +56,7 @@ optional arguments:
 
 ## Outputs
 
-After running the tools, you will get three kinds of result: [details](#details), [correctness](#correctness) and [error reasons](error-reasons).
+After running the tools, you will get three kinds of result: [details](#details), [correctness](#correctness), [error reasons](#error-reasons) and [scores](#scores).
 
 ### Details
 
@@ -78,6 +78,7 @@ Meaning of the fields:
 - `Prediction`: Your model prediction text (only in full version)
 - `Prediction Type`: Your model prediction type
 - `Correct?`: Your model prediction is correct or not
+- `Score`: The score your model got for this question
 - `Non-Correct Reason`: If your model prediction is not correct, what is the reason? It can be:
     - `right_type_wrong_prediction`: Your model predicted a correct question type, but its prediction is wrong
     - `wrong_type`: Your model predicted a wrong question type
@@ -122,3 +123,7 @@ Meaning of the fields:
 An example is shown as follows:
 
 ![](images/error_reasons.png)
+
+### Scores
+
+You will see the total your model got.
