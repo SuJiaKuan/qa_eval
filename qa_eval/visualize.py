@@ -8,6 +8,7 @@ _DETAILS_COMPACT_HEAD_KEY_LIST = [
     ("Question Type", "answer_type"),
     ("Prediction Type", "prediction_type"),
     ("Correct?", "is_correct"),
+    ("Score", "score"),
     ("Non-Correct Reason", "error_reason"),
 ]
 
@@ -21,6 +22,7 @@ _DETAILS_FULL_HEAD_KEY_LIST = [
     ("Prediction", "prediction_text"),
     ("Prediction Type", "prediction_type"),
     ("Correct?", "is_correct"),
+    ("Score", "score"),
     ("Non-Correct Reason", "error_reason"),
 ]
 
@@ -95,3 +97,8 @@ def visualize_error_reasons(error_reasons, table_format, save_path=None):
     error_reasons_df = _list_to_df(error_reasons, _ERROR_REASONS_HEAD_KEY_LIST)
     _df_to_stdout(error_reasons_df, "Error Reasons", table_format)
     _df_to_csv(error_reasons_df, save_path)
+
+
+def visualize_scores(score_total):
+    print("====================== Scores Result ======================")
+    print("Total Score: {}".format(score_total))

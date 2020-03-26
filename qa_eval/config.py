@@ -4,6 +4,8 @@ class OUTPUT_FILE_NAME:
     ERROR_REASONS = 'error_reasons.csv'
 
 
+DEFAULT_SCORE = 2
+
 DEFAULT_OUTPUT_DIR = 'output'
 DEFAULT_TABLE_FORMAT = 'github'
 

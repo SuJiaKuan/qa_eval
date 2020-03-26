@@ -86,3 +86,13 @@ def analyze_error_reasons(pqap_groups):
             error_reason["rate"] = rate
 
     return error_reasons
+
+
+def analyze_scores(pqap_groups):
+    score_total = 0
+
+    for pqap_group in pqap_groups:
+        for qap in pqap_group["qap_list"]:
+            score_total += qap["score"]
+
+    return score_total

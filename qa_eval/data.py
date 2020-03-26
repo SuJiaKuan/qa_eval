@@ -2,6 +2,7 @@ from qa_eval.util import load_json
 from qa_eval.util import load_jsonl
 from qa_eval.util import any_sep_contained
 from qa_eval.util import split_multi_seps
+from qa_eval.config import DEFAULT_SCORE
 from qa_eval.const import PROBLEM_TYPE
 from qa_eval.const import PROBLEM_LEVEL
 from qa_eval.const import ERROR_REASON
@@ -108,16 +109,16 @@ def parse(questions_path, answers_path, predictions_path):
         qap_list = []
         # Parse each question and its corresponding answer and prediction.
         for question in questions_group["QUESTIONS"]:
-            # Parse problem level.
+            # Parse question
+            qid = question["QID"]
             level = question["QTYPE"]
+            question_text = question["QTEXT"]
+            score = int(question.get("QSCORE", DEFAULT_SCORE))
 
             # Skip free response.
             if level == PROBLEM_LEVEL.FREE_RESPONSE:
                 continue
 
-            # Parse question
-            qid = question["QID"]
-            question_text = question["QTEXT"]
             # Parse answer instance to get its text, type and comparable.
             answer_text = answers[qid]
             answer_type, answer_comparable = _parse_answer(
@@ -152,6 +153,7 @@ def parse(questions_path, answers_path, predictions_path):
                 "prediction_type": prediction_type,
                 "prediction_text": prediction_text,
                 "is_correct": is_correct,
+                "score": score if is_correct else 0,
                 "error_reason": error_reason,
             })
 

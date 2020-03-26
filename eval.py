@@ -4,9 +4,11 @@ import os
 from qa_eval.data import parse as parse_data
 from qa_eval.analytics import analyze_correctness
 from qa_eval.analytics import analyze_error_reasons
+from qa_eval.analytics import analyze_scores
 from qa_eval.visualize import visualize_details
 from qa_eval.visualize import visualize_correctness
 from qa_eval.visualize import visualize_error_reasons
+from qa_eval.visualize import visualize_scores
 from qa_eval.config import DEFAULT_OUTPUT_DIR
 from qa_eval.config import DEFAULT_TABLE_FORMAT
 from qa_eval.config import TABLE_FORMAT_CHOICES
@@ -90,6 +92,9 @@ def main(args):
         args.format,
         save_path=os.path.join(args.output, OUTPUT_FILE_NAME.ERROR_REASONS),
     )
+
+    score_total = analyze_scores(pqap_groups)
+    visualize_scores(score_total)
 
 
 if __name__ == "__main__":
