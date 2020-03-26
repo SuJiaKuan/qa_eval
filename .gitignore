@@ -156,3 +156,6 @@ tags
 
 # Default directory that saves the results
 /output
+
+# Default file path that saves generated answers template.
+/answers.json
